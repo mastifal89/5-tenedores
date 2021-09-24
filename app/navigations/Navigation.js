@@ -16,38 +16,55 @@ export default function Navigation() {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="account"
-        tabBarOptions={{
-          inactiveTintColor: "#646464",
-          activeTintColor: "#00a680",
+        screenOptions={{
+          tabBarInactiveTintColor: "#646464",
+          tabBarActiveTintColor: "#00a680",
+
         }}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color }) => screenOptions(route, color),
         })}
+        sceneContainerStyle={{ marginTop: 5 }}
       >
         <Tab.Screen
-          name="restaurants"
+          name="restaurantsScreen"
           component={RestaurantsStack}
-          options={{ title: "Restaurantes" }}
+          options={{
+            title: "Restaurantes",
+            header: () => null
+          }}
         />
         <Tab.Screen
-          name="favorites"
+          name="favoritesScreen"
           component={FavoritesStack}
-          options={{ title: "Favoritos" }}
+          options={{ 
+            title: "Favoritos",
+            header: () => null
+           }}
         />
         <Tab.Screen
-          name="top-restaurants"
+          name="top-restaurantsScreen"
           component={TopRestaurantsStack}
-          options={{ title: "Top 5" }}
+          options={{ 
+            title: "Top 5",
+            header: () => null 
+          }}
         />
         <Tab.Screen
-          name="search"
+          name="searchScreen"
           component={SearchStack}
-          options={{ title: "Buscar" }}
+          options={{ 
+            title: "Buscar",
+            header: () => null
+          }}
         />
         <Tab.Screen
-          name="account"
+          name="accountScreen"
           component={AccountStack}
-          options={{ title: "Cuenta" }}
+          options={{ 
+            title: "Cuenta",
+            header: () => null
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
@@ -58,19 +75,19 @@ function screenOptions(route, color) {
   let iconName;
 
   switch (route.name) {
-    case "restaurants":
+    case "restaurantsScreen":
       iconName = "compass-outline";
       break;
-    case "favorites":
+    case "favoritesScreen":
       iconName = "heart-outline";
       break;
-    case "top-restaurants":
+    case "top-restaurantsScreen":
       iconName = "star-outline";
       break;
-    case "search":
+    case "searchScreen":
       iconName = "magnify";
       break;
-    case "account":
+    case "accountScreen":
       iconName = "home-outline";
       break;
     default:
@@ -78,6 +95,6 @@ function screenOptions(route, color) {
   }
 
   return (
-    <Icon type="material-community" name={iconName} size={22} color={color} />
+    <Icon type="material-community" name={iconName} size={28} color={color} />
   );
 }

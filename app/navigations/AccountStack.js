@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Account from "../screens/Account/Account";
+import AccountPage from "../screens/Account/AccountPage";
 import Login from "../screens/Account/Login";
 import Register from "../screens/Account/Register";
 
@@ -11,7 +11,7 @@ export default function AccountStack() {
     <Stack.Navigator>
       <Stack.Screen
         name="account"
-        component={Account}
+        component={AccountPage}
         options={{ title: "Mi cuenta" }}
       />
       <Stack.Screen

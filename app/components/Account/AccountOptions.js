@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { ListItem } from "react-native-elements";
+import { ListItem, Icon } from "react-native-elements";
 import { map } from "lodash";
 import Modal from "../Modal";
 import ChangeDisplayNameForm from "./ChangeDisplayNameForm";
@@ -57,22 +57,11 @@ export default function AccountOptions(props) {
   return (
     <View>
       {map(menuOptions, (menu, index) => (
-        <ListItem
-          key={index}
-          title={menu.title}
-          leftIcon={{
-            type: menu.iconType,
-            name: menu.iconNameLeft,
-            color: menu.iconColorLeft,
-          }}
-          rightIcon={{
-            type: menu.iconType,
-            name: menu.iconNameRight,
-            color: menu.iconColorRight,
-          }}
-          containerStyle={styles.menuItem}
-          onPress={menu.onPress}
-        />
+        <ListItem key={index} bottomDivider onPress={menu.onPress} style={styles.menuItem}>
+          <Icon name={menu.iconNameLeft} iconType={menu.iconType} color={menu.iconColorLeft}/>
+          <ListItem.Title>{menu.title}</ListItem.Title>
+          <Icon name={menu.iconNameRight} style={styles.iconRight} color={menu.iconColorRight}/>
+        </ListItem>
       ))}
       {renderComponent && (
         <Modal isVisible={showModal} setIsVisible={setShowModal}>
@@ -97,7 +86,7 @@ function generateOptions(selectedComponent) {
     {
       title: "Cambiar Email",
       iconType: "material-community",
-      iconNameLeft: "at",
+      iconNameLeft: "alternate-email",
       iconColorLeft: "#ccc",
       iconNameRight: "chevron-right",
       iconColorRight: "#ccc",
@@ -106,7 +95,7 @@ function generateOptions(selectedComponent) {
     {
       title: "Cambiar Contraseña",
       iconType: "material-community",
-      iconNameLeft: "lock-reset",
+      iconNameLeft: "https",
       iconColorLeft: "#ccc",
       iconNameRight: "chevron-right",
       iconColorRight: "#ccc",
